@@ -5,21 +5,22 @@
         <div class="crt-grain"></div>
         <div class="crt-scanline-bar"></div>
         <div class="flex min-h-screen justify-center items-center flex-col gap-4 bg-black mx-12 p-6 shadow-md mb-6">
-            <h1 class="text-5xl font-bold text-[#1a3a1a] font-retro text-shadow-md text-shadow-green-800">
-                Projects!
-            </h1>
+            <app-typing class="text-5xl font-bold text-[#1a3a1a] font-retro text-shadow-md text-shadow-green-800" [words]="['Projects!']">
+            </app-typing>
         </div>
         <div class="homebar bg-black max-h-sm flex flex-row gap-7 content-center p-2 sticky top-0 mx-12 border-b-[#1a3a1a] border-2 shadow-lg shadow-[#1a3a1a] font-retro items-center justify-center">
                 <!-- Button styling found here: https://buttons.ibelick.com -->
             <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-green-600 px-6 font-medium text-[#007700] shadow-sm shadow-[#1a3a1a]" (click)="goTo('/')"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">> About</span></button>
             <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-green-600 px-6 font-medium text-[#007700] shadow-sm shadow-[#1a3a1a]" (click)="goTo('/projects')"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">> Projects</span></button>
-            <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-green-600 px-6 font-medium text-[#007700] shadow-sm shadow-[#1a3a1a]" (click)="goTo('/contact')"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">> Contact</span></button>
+            <!-- <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-green-600 px-6 font-medium text-[#007700] shadow-sm shadow-[#1a3a1a]" (click)="goTo('/contact')"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">> Contact</span></button> -->
                 
             
         </div>
-        <div class="relative flex bg-inherit content-center justify-center text-center mt-10">
+        
+        <!--<div class="relative flex bg-inherit content-center justify-center text-center mt-10">
             <input type="text" class="font-retro peer bg-transparent h-10 w-72 rounded-lg text-[#007700] placeholder-transparent ring-2 px-2 ring-[#1a3a1a] focus:ring-[#1a3a1a] focus:outline-none focus:border-[#1a3a1a]" placeholder="Type inside me"/><label for="username" class="absolute cursor-text text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-[#007700] peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-[#1a3a1a] peer-focus:text-sm transition-all font-retro">Filter Projects..</label>
-        </div>
+        </div>-->
+        
         <div class="bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
             <h2 class="font-retro text-[#007700] text-2xl">> Mechanon.exe</h2>
             <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl">
@@ -36,30 +37,77 @@
                 </div>
             </div>
         </div>
+
+        <div class="bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
+            <h2 class="font-retro text-[#007700] text-2xl">> ASD-ChatBot.exe</h2>
+            <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl">
+                
+                <img class="h-56 w-56 aspect-square" src="assets/images/profile.png" alt="profile picture of Christopher" />
+                <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex justify-center items-center">
+                    <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;Initially for a hackathon, this is a chatbot based off a Classification Model based off the ASD-10 questionnaire. It has an 80% accuracy on predicting correctly.</p>
+                </div>
+                <h3 class="font-retro text-[#007700] text-2xl text-center w-1/2">> TechStack.txt</h3>
+                <div class="flex flex-row h-3/4 w-1/2 bg-black border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mb-12">
+                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Python</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
+                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">ML</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
+                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">NLP</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
+            <h2 class="font-retro text-[#007700] text-2xl">> DND-Discord-Bot.exe</h2>
+            <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl">
+                
+                <img class="h-56 w-56 aspect-square" src="assets/images/profile.png" alt="profile picture of Christopher" />
+                <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex justify-center items-center">
+                    <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;This is a discord bot that is a replacement for a Dungeon Master in Dungeons & Dragons. It uses ChatGPT-3.5 Turbo to generate messages. (WIP)</p>
+                </div>
+                <h3 class="font-retro text-[#007700] text-2xl text-center w-1/2">> TechStack.txt</h3>
+                <div class="flex flex-row h-3/4 w-1/2 bg-black border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mb-12">
+                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">JavaScript</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
+                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Prompt Engineering</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
+                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">LLM</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <footer class="footer justify-center bg-[#080808] flex flex-row gap-6 content-center items-center">
-        <!-- Button styling found here: https://buttons.ibelick.com -->
-        <button class="group relative inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-[#020202] font-medium text-neutral-200 transition-all duration-300 hover:w-32 m-3">
-            <div class="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-4 group-hover:opacity-100">
-                Github
-            </div>
-            <div class="absolute right-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" fill="currentColor"/>
-                </svg>
-            </div>
-        </button>
 
 
-        <button class="group relative inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-[#020202] font-medium text-neutral-200 transition-all duration-300 hover:w-32 m-3">
-            <div class="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-4 group-hover:opacity-100">
-                LinkedIn
-            </div>
-            <div class="absolute right-3">
-                <svg fill="#FFFFFF" width="24" height="24" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10">
-                    <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"/>
-                </svg>
-            </div>
-        </button>
-    </footer>
+
+
+    <footer class="footer justify-center bg-[#080808] flex flex-col gap-6 content-center items-center">
+    <!-- Button styling found here: https://buttons.ibelick.com -->
+
+    <div>
+      <h2 class="font-retro text-[#007700] text-center text-3xl mt-10">Like My Projects?</h2>
+      <p class="font-retro text-[#1a3a1a] text-center text-xl mt-6">Here are my socials:</p>
+    </div>
+    <div class="flex flex-row gap-6">
+      <button class="group relative inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-[#020202] font-medium text-neutral-200 transition-all duration-300 hover:w-32 m-3" (click)="goToExternal('https://github.com/SlimSchade123')">
+        <div class="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-4 group-hover:opacity-100">
+          Github
+        </div>
+        <div class="absolute right-3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" fill="currentColor"/>
+          </svg>
+        </div>
+      </button>
+
+
+      <button class="group relative inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-[#020202] font-medium text-neutral-200 transition-all duration-300 hover:w-32 m-3" (click)="goToExternal('https://www.linkedin.com/in/christopher-schade-1a08b3294/')">
+        <div class="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-4 group-hover:opacity-100">
+          LinkedIn
+        </div>
+        <div class="absolute right-3">
+          <svg fill="#FFFFFF" width="24" height="24" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10">
+            <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"/>
+          </svg>
+        </div>
+      </button>
+    </div>
+    
+  </footer>
 </main>
