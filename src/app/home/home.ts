@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TypingComponent } from '../typing.component';
 import { Router } from '@angular/router';
+import { TechStack } from '../tech-stack/tech-stack';
 
 @Component({
   selector: 'app-home',
@@ -18,5 +19,10 @@ export class Home {
   goTo(path: string) {
     console.log('navigating to', path);
     this.router.navigate([path]);
+  }
+
+  goToExternal(path: string) {
+    console.log('navigating to', path);
+    window.open(path, '_blank');
   }
 }
