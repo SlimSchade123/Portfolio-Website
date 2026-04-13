@@ -1,9 +1,6 @@
 <main class="main bg-black">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-  <div class="crt-screen content min-h-screen">
-    <div class="crt-grain"></div>
-    <div class="crt-scanline-bar"></div>
     <div class="flex min-h-screen justify-center items-center flex-col gap-4 bg-black mx-12 p-6 shadow-md mb-6">
       
 
@@ -23,17 +20,47 @@
       <!-- <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-green-600 px-6 font-medium text-[#007700] shadow-sm shadow-[#1a3a1a]" (click)="goTo('/contact')"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">> Contact</span></button> -->
     </div>
 
-    <div class="bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
+    <div #scrollSection class="scroll-entry enter-delay-1 bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
       <h2 class="font-retro text-[#007700] text-2xl">> AboutMe.txt</h2>
       <div class="flex flex-row h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl">
-        <img class="h-120 w-120 aspect-square" src="assets/images/ProfessionalMe.png" alt="profile picture of Christopher" />
-        <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex justify-center items-center">
-          <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;I'm a software developer that has a passion for technology and creating immersive experiences. As a child, I played video games and wondered, "How can a whole world live within a PlayStation 2?" Ever since that moment, it has been my goal to understand how computers work and to create my own digital worlds.</p>
+        <img class="h-120 w-120 aspect-square profile-image" src="assets/images/ProfessionalMe.png" alt="profile picture of Christopher" />
+        <div
+          class="interactive-card h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-4 flex flex-col gap-4 justify-start"
+          (mousemove)="onInteractiveCardMove($event)"
+          (mouseleave)="onInteractiveCardLeave($event)">
+          <div class="topic-picker" aria-label="About topics">
+            @for (topic of aboutTopics; track topic.key) {
+              <button
+                class="topic-chip font-retro"
+                [class.topic-chip-active]="activeAboutTopic() === topic.key"
+                (click)="setAboutTopic(topic.key)">
+                {{ topic.label }}
+              </button>
+            }
+          </div>
+
+          <div class="topic-content" aria-live="polite">
+            <h3
+              class="glitch-text glitch-title font-retro text-[#00bb00] text-2xl"
+              [attr.data-text]="selectedAboutTopic().label">
+              {{ selectedAboutTopic().label }}
+            </h3>
+            <p
+              class="glitch-text glitch-summary font-retro text-[#00aa00] text-lg text-left mt-3"
+              [attr.data-text]="selectedAboutTopic().summary">
+              {{ selectedAboutTopic().summary }}
+            </p>
+            <div class="topic-highlights mt-3">
+              @for (point of selectedAboutTopic().highlights; track point) {
+                <p class="glitch-text glitch-line font-retro text-[#008f00] text-base" [attr.data-text]="point">{{ point }}</p>
+              }
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
+    <div #scrollSection class="scroll-entry enter-delay-2 bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
       <h2 class="font-retro text-[#007700] text-2xl">> Interests.txt</h2>
       <div class="flex flex-row h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl">
         <svg height="400px" width="400px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -79,36 +106,97 @@
             c11.341,0,20.539-9.18,20.539-20.529C339.592,225.822,330.394,216.633,319.054,216.633z"/>
         </g>
         </svg>
-        <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex justify-center items-center">
-          <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;I have been playing video games since I can remember, so you can say I'm an experienced gamer. I have played Magic The Gathering for over a decade, so I have a soft spot for card games in particular. I taught myself web development in order to scratch the itch in my brain to create.</p>
+        <div
+          class="interactive-card h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-4 flex flex-col gap-4 justify-start"
+          (mousemove)="onInteractiveCardMove($event)"
+          (mouseleave)="onInteractiveCardLeave($event)">
+          <div class="topic-picker" aria-label="Interest topics">
+            @for (topic of interestTopics; track topic.key) {
+              <button
+                class="topic-chip font-retro"
+                [class.topic-chip-active]="activeInterestTopic() === topic.key"
+                (click)="setInterestTopic(topic.key)">
+                {{ topic.label }}
+              </button>
+            }
+          </div>
+
+          <div class="topic-content" aria-live="polite">
+            <h3
+              class="glitch-text glitch-title font-retro text-[#00bb00] text-2xl"
+              [attr.data-text]="selectedInterestTopic().label">
+              {{ selectedInterestTopic().label }}
+            </h3>
+            <p
+              class="glitch-text glitch-summary font-retro text-[#00aa00] text-lg text-left mt-3"
+              [attr.data-text]="selectedInterestTopic().summary">
+              {{ selectedInterestTopic().summary }}
+            </p>
+            <div class="topic-highlights mt-3">
+              @for (point of selectedInterestTopic().highlights; track point) {
+                <p class="glitch-text glitch-line font-retro text-[#008f00] text-base" [attr.data-text]="point">{{ point }}</p>
+              }
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!--<div class="bg-black p-6 justify-center m-6 text-center h-screen">
-      <h2 class="font-retro text-[#007700] text-2xl">> TechStack.txt</h2>
-      <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center shadow-xl">
-
-        <div class="bg-black w-1/2 border-1 border-[#0f2a0f] p-2 flex justify-center items-center flex-row gap-4 shadow-[#1a3a1a] shadow-md">
-          <button class="relative z-0 h-12 rounded-full bg-green-600 px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full after:bg-green-900 hover:after:scale-x-125 hover:after:scale-y-150 hover:after:opacity-0 hover:after:transition hover:after:duration-500 font-retro">> Game</button>
-          <button class="relative z-0 h-12 rounded-full bg-green-600 px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full after:bg-green-900 hover:after:scale-x-125 hover:after:scale-y-150 hover:after:opacity-0 hover:after:transition hover:after:duration-500 font-retro">> ML/AI</button>
-          <button class="relative z-0 h-12 rounded-full bg-green-600 px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full after:bg-green-900 hover:after:scale-x-125 hover:after:scale-y-150 hover:after:opacity-0 hover:after:transition hover:after:duration-500 font-retro">> Full Stack</button>
+    <div #scrollSection class="scroll-entry enter-delay-3 bg-black p-6 justify-center m-6 text-center mt-10 h-screen">
+      <h2 class="font-retro text-[#007700] text-2xl">> Skills.txt</h2>
+      <div class="skills-wrapper flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-start items-center shadow-xl p-4 gap-4">
+        <div class="skills-tabs bg-black w-full max-w-3xl border-1 border-[#0f2a0f] p-2 flex justify-center items-center flex-row flex-wrap gap-3 shadow-[#1a3a1a] shadow-md">
+          @for (tab of skillTabs; track tab.key) {
+            <button
+              class="skills-tab-btn relative z-0 h-11 rounded-full px-6 font-retro"
+              [class.skills-tab-btn-active]="activeSkillTab() === tab.key"
+              (click)="setActiveTab(tab.key)">
+              {{ tab.label }}
+            </button>
+          }
         </div>
-        <div class="flex flex-row h-3/4 w-1/2 m-3">
-          <div class="h-full w-full bg-black border-1 border-[#0f2a0f] p-2 flex justify-center items-center flex-row gap-4">
-            <app-tech-stack [techStack]="['C#', 'Unity', 'Unreal Engine']"></app-tech-stack>
+
+        <div class="skills-panel flex flex-col w-full max-w-3xl bg-black border-1 border-[#0f2a0f] p-6 text-left gap-3">
+          <div class="flex flex-row justify-between items-center gap-3 flex-wrap">
+            <div>
+              <h3 class="font-retro text-[#00bb00] text-xl">{{ selectedSkills().heading }}</h3>
+              <p class="font-retro text-[#009900] text-base">{{ selectedSkills().description }}</p>
+            </div>
+
+            <div class="skills-controls flex flex-row gap-2 items-center" aria-label="Skill slide controls">
+              <button class="skills-nav-btn font-retro" (click)="previousSlide()" aria-label="Previous skill slide">Prev</button>
+              <p class="font-retro text-[#00aa00] text-sm">
+                Slide {{ activeSlideIndex() + 1 }} / {{ selectedSkills().slides.length }}
+              </p>
+              <button class="skills-nav-btn font-retro" (click)="nextSlide()" aria-label="Next skill slide">Next</button>
+            </div>
           </div>
-  
+
+          <div class="skills-slide-card mt-2" aria-live="polite">
+            <p class="font-retro text-[#00d300] text-2xl">{{ activeSlide().title }}</p>
+            <p class="font-retro text-[#00aa00] text-lg mt-3">{{ activeSlide().summary }}</p>
+            <div class="skills-tags mt-4">
+              @for (tag of activeSlide().tags; track tag) {
+                <span class="skills-tag font-retro">#{{ tag }}</span>
+              }
+            </div>
+          </div>
+
+          <div class="skills-list mt-2" aria-label="Select a skill slide">
+            @for (slide of selectedSkills().slides; track slide.title; let index = $index) {
+              <button
+                class="skills-slide-chip font-retro"
+                [class.skills-slide-chip-active]="activeSlideIndex() === index"
+                (click)="goToSlide(index)">
+                {{ index + 1 }}. {{ slide.title }}
+              </button>
+            }
+          </div>
         </div>
       </div>
-    </div>-->
+    </div>
 
-  </div>
-
-  
-
-
-  <footer class="footer justify-center bg-[#080808] flex flex-col gap-6 content-center items-center">
+  <footer #scrollSection class="scroll-entry enter-delay-2 footer justify-center bg-[#080808] flex flex-col gap-6 content-center items-center">
     <!-- Button styling found here: https://buttons.ibelick.com -->
 
     <div>
