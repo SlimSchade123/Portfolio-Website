@@ -13,10 +13,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <span class="inline-flex items-center h-[5em]">
-      <span>{{ displayedText() }}</span>
+    <span class="inline-flex items-baseline min-h-[1em] leading-none align-middle">
+      <span class="inline-block min-w-[0.05em]">{{ displayedText() }}</span>
       <span
-        class="ml-0.5 inline-block w-[2px] h-[1.1em] bg-[#1a3a1a] align-middle"
+        class="ml-0.5 inline-block w-[2px] h-[1em] bg-[#1a3a1a] align-baseline"
         [class.opacity-0]="!cursorVisible()"
         [class.opacity-100]="cursorVisible()"
         style="transition: opacity 0.1s"

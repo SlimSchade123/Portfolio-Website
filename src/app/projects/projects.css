@@ -1,0 +1,288 @@
+.projects-viewport {
+	max-height: 78vh;
+	overflow-x: auto;
+	overflow-y: hidden;
+	border: 1px solid #1a3a1a;
+	background: #020202;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	-ms-overflow-style: none;
+}
+
+.projects-viewport::-webkit-scrollbar {
+	display: none;
+}
+
+.projects-track {
+	display: flex;
+	flex-direction: row;
+}
+
+.project-filter {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.9rem 1rem;
+	border: 1px solid #1a3a1a;
+	background: #050505;
+}
+
+.project-filter-input {
+	width: min(520px, 100%);
+	padding: 0.45rem 0.7rem;
+	border: 1px solid #2d6c2d;
+	background: #010101;
+	color: #86ff86;
+	outline: none;
+}
+
+.project-filter-input::placeholder {
+	color: #3f9243;
+}
+
+.project-filter-input:focus {
+	border-color: #63ff63;
+	box-shadow: 0 0 0 1px #63ff63;
+}
+
+.project-page {
+	min-width: 100%;
+	scroll-snap-align: start;
+}
+
+.project-empty-state {
+	min-width: 100%;
+	height: 60vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	color: #53d753;
+	border: 1px dashed #2a6a2a;
+	margin: 1.5rem;
+	background: rgba(3, 20, 3, 0.28);
+}
+
+.project-card {
+	position: relative;
+	height: 66vh;
+	min-height: 460px;
+	overflow: hidden;
+	border: 1px solid #1a3a1a;
+	border-radius: 14px;
+	box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+	background: #040404;
+}
+
+.project-card-image {
+	position: absolute;
+	inset: 0;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	opacity: 0.5;
+	transform: scale(1);
+	transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.project-image-mechanon {
+	background-image: url('/assets/images/Mechanon.png');
+}
+
+.project-image-asd {
+	background-image: url('/assets/images/asdclassification.png');
+}
+
+.project-image-dnd {
+	background-image: url('/assets/images/DNDBot.png');
+}
+
+.project-image-raytracing {
+	background-image: url('/assets/images/raytracing.png');
+}
+
+.project-card-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 38%, rgba(0, 0, 0, 0.86) 100%);
+}
+
+.project-card-content {
+	position: absolute;
+	left: 1.75rem;
+	bottom: 1.75rem;
+	z-index: 2;
+	max-width: min(78ch, calc(100% - 3.5rem));
+	color: #c9ffc9;
+	transition: transform 0.35s ease;
+}
+
+.project-file-name {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.45ch;
+	font-size: clamp(2rem, 3vw, 3.5rem);
+	line-height: 1;
+	letter-spacing: 0.04em;
+	color: #63ff63;
+	text-shadow: 0 0 12px rgba(60, 255, 60, 0.35);
+	transition: font-size 0.35s ease, font-weight 0.35s ease;
+	white-space: nowrap;
+}
+
+.project-prefix {
+	flex: 0 0 auto;
+	line-height: 1;
+}
+
+.project-title-typing {
+	display: inline-flex;
+	flex: 0 0 22ch;
+	min-width: 22ch;
+	white-space: nowrap;
+	color: inherit;
+	font: inherit;
+}
+
+.project-description {
+	margin-top: 0.9rem;
+	font-size: clamp(1.15rem, 1.45vw, 1.55rem);
+	line-height: 1.2;
+	max-width: 60ch;
+	color: #cbf8cb;
+	transition: font-size 0.35s ease, font-weight 0.35s ease;
+}
+
+.project-note {
+	margin-top: 0.65rem;
+	font-size: 1.1rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: #92ff92;
+	opacity: 0.95;
+	transition: font-size 0.35s ease, font-weight 0.35s ease;
+}
+
+.project-tags {
+	margin-top: 0.95rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.project-tags span {
+	padding: 0.2rem 0.75rem;
+	border: 1px solid #3d8f3d;
+	border-radius: 999px;
+	background: rgba(2, 20, 2, 0.72);
+	font-size: 1rem;
+	color: #b6ffb6;
+	transition: transform 0.35s ease;
+}
+
+.project-link {
+	margin-top: 1rem;
+	padding: 0.45rem 1.1rem;
+	border: 1px solid #4cca4c;
+	border-radius: 8px;
+	background: rgba(0, 0, 0, 0.62);
+	color: #87ff87;
+	font-size: 1rem;
+	letter-spacing: 0.04em;
+	cursor: pointer;
+	transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.project-link:hover {
+	background: rgba(8, 35, 8, 0.82);
+	transform: translateY(-1px);
+}
+
+.project-card:hover .project-card-image {
+	opacity: 0.62;
+	transform: scale(1.06);
+}
+
+.project-card:hover .project-file-name {
+	font-size: clamp(2.3rem, 3.35vw, 3.8rem);
+	font-weight: 700;
+}
+
+.project-card:hover .project-description,
+.project-card:hover .project-note {
+	font-size: clamp(1.25rem, 1.6vw, 1.72rem);
+	font-weight: 700;
+}
+
+.project-card:hover .project-tags span {
+	transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+	.project-card {
+		height: 64vh;
+		min-height: 420px;
+	}
+
+	.project-filter {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.project-filter-input {
+		width: 100%;
+	}
+
+	.project-card-content {
+		left: 1rem;
+		right: 1rem;
+		bottom: 1rem;
+		max-width: none;
+	}
+
+	.project-title-typing {
+		flex-basis: 20ch;
+		min-width: 20ch;
+	}
+}
+
+.project-dots {
+	display: flex;
+	justify-content: center;
+	gap: 0.75rem;
+	margin: 1rem 1.5rem 0;
+}
+
+.project-dot {
+	width: 0.75rem;
+	height: 0.75rem;
+	border-radius: 999px;
+	border: 1px solid #1a3a1a;
+	background: #031503;
+	opacity: 0.6;
+	transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+	cursor: pointer;
+}
+
+.project-dot:hover {
+	opacity: 0.9;
+	transform: scale(1.08);
+}
+
+.project-dot.is-active {
+	background: #00aa00;
+	opacity: 1;
+	box-shadow: 0 0 10px #007700;
+}
+
+.project-dot-label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}

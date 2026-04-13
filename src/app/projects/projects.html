@@ -20,78 +20,76 @@
         <!--<div class="relative flex bg-inherit content-center justify-center text-center mt-10">
             <input type="text" class="font-retro peer bg-transparent h-10 w-72 rounded-lg text-[#007700] placeholder-transparent ring-2 px-2 ring-[#1a3a1a] focus:ring-[#1a3a1a] focus:outline-none focus:border-[#1a3a1a]" placeholder="Type inside me"/><label for="username" class="absolute cursor-text text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-[#007700] peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-[#1a3a1a] peer-focus:text-sm transition-all font-retro">Filter Projects..</label>
         </div>-->
+
+        <div class="project-filter m-6 mt-10">
+          <label class="font-retro text-[#007700]" for="project-filter-input">Filter by skill or keyword</label>
+          <input
+            id="project-filter-input"
+            type="text"
+            class="project-filter-input font-retro"
+            placeholder="Try: python, llm, graphics"
+            [value]="filterKeyword"
+            (input)="onFilterChange($event)"
+          />
+        </div>
         
-        <div class="bg-black p-6 justify-center m-6 text-center mt-10 min-h-screen">
-            <p class="font-retro text-[#007700] text-2xl h-[5em]">> <app-typing class="font-retro text-[#007700] text-5xl" [words]="['Mechanon.exe']"></app-typing></p>
-            <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mt-10">
-                
-                <img class="h-75 w-95 z-100 mt-10" src="assets/images/Mechanon.png" alt="picture of Mechanon" />
-                <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex flex-col justify-center items-center">
-                    <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;Mechanon is a Deep Reinforcement Learning bot using RLGym-PPO for the training. It has a total of 19 reward functions and was trained to 4B timesteps.</p>
-                    <p class="font-retro text-[#00aa00] text-lg text-center p-2">NOT PUBLICALLY AVAILABLE!</p>
-                </div>
-                <h3 class="font-retro text-[#007700] text-2xl text-center w-1/2">> TechStack.txt</h3>
-                <div class="flex flex-row h-3/4 w-1/2 bg-black border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mb-12">
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Python</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Deep RL</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">RLGym-PPO</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                </div>
-                
+        <div
+          #projectsViewport
+          class="projects-viewport m-6"
+          (scroll)="onViewportScroll()"
+        >
+
+        <div class="projects-track">
+
+        @if (visibleProjects.length === 0) {
+          <div class="project-empty-state font-retro">
+            No projects match "{{ filterKeyword }}".
+          </div>
+        }
+
+        @for (project of visibleProjects; track trackProject($index, project)) {
+
+        <div class="project-page p-6 mt-10">
+          <article class="project-card">
+                <div class="project-card-image" [ngClass]="project.imageClass"></div>
+            <div class="project-card-overlay"></div>
+            <div class="project-card-content font-retro">
+              <p class="project-file-name"><span class="project-prefix">&gt;</span><app-typing class="project-title-typing" [words]="[project.title]"></app-typing></p>
+              <p class="project-description">{{ project.description }}</p>
+              @if (project.note) {
+              <p class="project-note">{{ project.note }}</p>
+              }
+              <div class="project-tags">
+                @for (tag of project.tags; track tag) {
+                <span>{{ tag }}</span>
+                }
+              </div>
+              @if (project.githubUrl) {
+              <button class="project-link" (click)="goToExternal(project.githubUrl)">View Github</button>
+              }
             </div>
+          </article>
         </div>
 
-        <div class="bg-black p-6 justify-center m-6 text-center mt-10 min-h-screen">
-            <p class="font-retro text-[#007700] text-2xl h-[5em]">> <app-typing class="font-retro text-[#007700] text-5xl" [words]="['ASD-ChatBot.exe']"></app-typing></p>
-            <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mt-10">
-                
-                <img class="h-75 w-85 z-100 mt-10" src="assets/images/asdclassification.png" alt="picture of the chatbot" />
-                <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex justify-center items-center">
-                    <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;Initially for a hackathon, this is a chatbot based off a Classification Model based off the ASD-10 questionnaire. It has an 80% accuracy on predicting correctly.</p>
-                </div>
-                <h3 class="font-retro text-[#007700] text-2xl text-center w-1/2">> TechStack.txt</h3>
-                <div class="flex flex-row h-3/4 w-1/2 bg-black border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mb-6">
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Python</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">ML</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">NLP</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                </div>
-                <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-200 mb-6 shadow-green-600 shadow-md" (click)="goToExternal('https://github.com/SlimSchade123/HackathonSpring2025-ASDClassificationModel')"><span class="font-retro text-[#007700]">Github</span><div class="ml-1 transition duration-300 group-hover:rotate-[360deg]"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></button>
-            </div>
+        }
+
         </div>
 
-        <div class="bg-black p-6 justify-center m-6 text-center mt-10 min-h-screen">
-            <p class="font-retro text-[#007700] text-2xl h-[5em]">> <app-typing class="font-retro text-[#007700] text-5xl" [words]="['DND-Discord-Bot.exe']"></app-typing></p>
-            <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-x mt-10">
-                
-                <img class="h-80 w-200 mt-10 z-100" src="assets/images/DNDBot.png" alt="Chat logs from DND-Discord-Bot" />
-                <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex justify-center items-center">
-                    <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;This is a discord bot that is a replacement for a Dungeon Master in Dungeons & Dragons. It uses ChatGPT-3.5 Turbo to generate messages. (WIP)</p>
-                </div>
-                <h3 class="font-retro text-[#007700] text-2xl text-center w-1/2">> TechStack.txt</h3>
-                <div class="flex flex-row h-3/4 w-1/2 bg-black border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mb-6">
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">JavaScript</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Prompt Engineering</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">LLM</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                </div>
-                <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-200 mb-6 shadow-green-600 shadow-md" (click)="goToExternal('https://github.com/SlimSchade123/DiscordDND')"><span class="font-retro text-[#007700]">Github</span><div class="ml-1 transition duration-300 group-hover:rotate-[360deg]"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></button>
-            </div>
         </div>
 
-        <div class="bg-black p-6 justify-center m-6 text-center mt-10 min-h-screen">
-            <p class="font-retro text-[#007700] text-2xl h-[5em]">> <app-typing class="font-retro text-[#007700] text-5xl" [words]="['Raytracing-Engine.exe']"></app-typing></p>
-            <div class="flex flex-col h-3/4 bg-[#080808] border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mt-10">
-                
-                <img class="h-90 w-100 mt-10" src="assets/images/raytracing.png" alt="picture of the raytracing engine" />
-                <div class="h-3/4 w-1/2 bg-black m-6 border-1 border-[#0f2a0f] p-2 flex justify-center items-center">
-                    <p class="font-retro text-[#00aa00] text-lg text-left p-2">&emsp;This is a raytracing engine that simulates lighting in a 3d environment. It also has a software rasterizer as another way to simulate a 3d environment.</p>
-                </div>
-                <h3 class="font-retro text-[#007700] text-2xl text-center w-1/2">> TechStack.txt</h3>
-                <div class="flex flex-row h-3/4 w-1/2 bg-black border-t-[#1a3a1a] border-1 justify-center items-center gap-6 shadow-xl mb-6">
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">C++</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Computer Graphics</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                    <button class="group relative"><div class="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 font-retro text-[#007700]">Software Development</div><div class="absolute inset-0 z-0 h-full w-full rounded-md transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#3a5a3a,10px_10px_#2a4a2a,15px_15px_#1a3a1a]"></div></button>
-                </div>
-                <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-200 mb-6 shadow-green-600 shadow-md" (click)="goToExternal('https://github.com/SlimSchade123/GAT350-----Computer-Graphics')"><span class="font-retro text-[#007700]">Github</span><div class="ml-1 transition duration-300 group-hover:rotate-[360deg]"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></button>
-            </div>
+        <div class="project-dots" *ngIf="projectIndexes.length > 0">
+          @for (index of projectIndexes; track index) {
+            <button
+              type="button"
+              class="project-dot"
+              [class.is-active]="currentProjectIndex === index"
+              [attr.aria-label]="'Go to project ' + (index + 1)"
+              [attr.title]="'Go to project ' + (index + 1)"
+              (click)="goToProject(index)"
+            >
+              <span class="project-dot-label">Project {{ index + 1 }}</span>
+            </button>
+          }
         </div>
 
     </div>
