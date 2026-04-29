@@ -17,6 +17,21 @@
             <div class="crt-scanline-bar"></div>
 
             <div class="screen-content">
+              <div class="browser-chrome">
+                <div class="browser-toolbar">
+                  <button class="browser-btn browser-back" (click)="goBack()" aria-label="Back" title="Back">◀</button>
+                  <button class="browser-btn browser-forward" (click)="goForward()" aria-label="Forward" title="Forward">▶</button>
+                  <button class="browser-btn browser-refresh" (click)="refresh()" aria-label="Refresh" title="Refresh">⟳</button>
+                  <button class="browser-btn browser-home" (click)="goHome()" aria-label="Home" title="Home">⌂</button>
+                </div>
+                <div class="browser-address-bar">
+                  <span class="browser-lock">🔒</span>
+                  <input type="text" class="browser-url-input" [value]="currentUrl" (input)="onUrlInput($event)" (keydown)="onUrlKeydown($event)" aria-label="Address bar">
+                </div>
+                <div class="browser-progress">
+                  <div class="progress-bar" [style.width.%]="scrollProgress * 100"></div>
+                </div>
+              </div>
               <div class="screen-warp">
                 <div class="screen-inner">
                   <router-outlet />

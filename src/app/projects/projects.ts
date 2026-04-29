@@ -123,6 +123,16 @@ export class Projects implements AfterViewInit, OnDestroy {
     });
   }
 
+  resetFilter() {
+    this.filterKeyword = '';
+    this.applyFilter();
+    this.updateIndexes();
+
+    requestAnimationFrame(() => {
+      this.initializeCarousel();
+    });
+  }
+
   onViewportScroll() {
     const viewport = this.projectsViewport?.nativeElement;
     if (!viewport || viewport.clientWidth === 0) {

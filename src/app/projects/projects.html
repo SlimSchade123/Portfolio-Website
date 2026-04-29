@@ -1,10 +1,48 @@
 <main class="main bg-black">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-        <div class="flex min-h-screen justify-center items-center flex-col gap-4 bg-black mx-12 p-6 shadow-md mb-6">
-            <app-typing class="text-9xl font-bold text-[#1a3a1a] font-retro text-shadow-md text-shadow-green-800" [words]="['Projects!']">
-            </app-typing>
+        <!-- Projects Hero Section -->
+    <div class="projects-hero min-h-screen mx-12 mb-6 relative overflow-hidden">
+      <div class="hero-corner hero-corner-tl"></div>
+      <div class="hero-corner hero-corner-tr"></div>
+      <div class="hero-corner hero-corner-bl"></div>
+      <div class="hero-corner hero-corner-br"></div>
+
+      <div class="hero-content flex flex-col justify-center items-center min-h-screen gap-6 px-12 py-6 relative z-20">
+        <div class="hero-header-line font-retro text-[#007700] text-sm tracking-widest">
+          > PROJECT_SHOWCASE_v1.0
         </div>
+
+        <h1 class="projects-title font-retro text-[#63ff63] leading-tight text-center">
+          Projects
+        </h1>
+
+        <p class="projects-subtitle font-retro text-[#00aa00] max-w-2xl text-center">
+          Full-stack applications, game systems, and AI experiments showcasing problem-solving and technical depth
+        </p>
+
+        <div class="projects-stats flex gap-12 mt-8 font-retro">
+          <div class="stat-item text-center">
+            <div class="stat-number text-[#63ff63] text-3xl drop-shadow-lg">{{ visibleProjects.length }}</div>
+            <div class="stat-label text-[#008f00] text-sm">Projects</div>
+          </div>
+          <div class="stat-item text-center">
+            <div class="stat-number text-[#63ff63] text-3xl drop-shadow-lg">5+</div>
+            <div class="stat-label text-[#008f00] text-sm">Technologies</div>
+          </div>
+          <div class="stat-item text-center">
+            <div class="stat-number text-[#63ff63] text-3xl drop-shadow-lg">100%</div>
+            <div class="stat-label text-[#008f00] text-sm">Effort</div>
+          </div>
+        </div>
+
+        <div class="scroll-hint font-retro text-[#00aa00] text-sm mt-12 animate-pulse">
+          ↓ Scroll to explore ↓
+        </div>
+      </div>
+
+      <div class="hero-bottom-accent"></div>
+    </div>
         <div class="homebar bg-black max-h-sm flex flex-row gap-7 content-center p-2 sticky top-0 mx-12 border-b-[#1a3a1a] border-2 shadow-lg shadow-[#1a3a1a] font-retro items-center justify-center z-150">
                 <!-- Button styling found here: https://buttons.ibelick.com -->
             <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-green-600 px-6 font-medium text-[#007700] shadow-sm shadow-[#1a3a1a]" (click)="goTo('/')"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">> About</span></button>
@@ -18,75 +56,112 @@
             <input type="text" class="font-retro peer bg-transparent h-10 w-72 rounded-lg text-[#007700] placeholder-transparent ring-2 px-2 ring-[#1a3a1a] focus:ring-[#1a3a1a] focus:outline-none focus:border-[#1a3a1a]" placeholder="Type inside me"/><label for="username" class="absolute cursor-text text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-[#007700] peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-[#1a3a1a] peer-focus:text-sm transition-all font-retro">Filter Projects..</label>
         </div>-->
 
-        <div class="project-filter m-6 mt-10">
-          <label class="font-retro text-[#007700]" for="project-filter-input">Filter by skill or keyword</label>
-          <input
-            id="project-filter-input"
-            type="text"
-            class="project-filter-input font-retro"
-            placeholder="Try: python, llm, graphics"
-            [value]="filterKeyword"
-            (input)="onFilterChange($event)"
-          />
+        <!-- Projects Section Header -->
+        <div class="projects-section-header mx-12 mb-8 relative">
+          <h2 class="section-title font-retro text-[#007700] text-2xl mb-6">
+            > AVAILABLE_PROJECTS
+          </h2>
+
+          <div class="project-filter-container">
+            <label class="filter-label font-retro text-[#008f00]" for="project-filter-input">
+              Search Projects:
+            </label>
+            <input
+              id="project-filter-input"
+              type="text"
+              class="project-filter-input font-retro"
+              placeholder="Try: python, llm, graphics, game"
+              [value]="filterKeyword"
+              (input)="onFilterChange($event)"
+              aria-label="Filter projects by keyword"
+            />
+            <span class="filter-hint font-retro text-[#008f00] text-xs opacity-70">
+              {{ filterKeyword ? '✓ Filtered' : '∞ All projects' }}
+            </span>
+          </div>
         </div>
         
-        <div
-          #projectsViewport
-          class="projects-viewport m-6"
-          (scroll)="onViewportScroll()"
-        >
-
-        <div class="projects-track">
-
-        @if (visibleProjects.length === 0) {
-          <div class="project-empty-state font-retro">
-            No projects match "{{ filterKeyword }}".
-          </div>
-        }
-
-        @for (project of visibleProjects; track trackProject($index, project)) {
-
-        <div class="project-page p-6 mt-10">
-          <article class="project-card">
-                <div class="project-card-image" [ngClass]="project.imageClass"></div>
-            <div class="project-card-overlay"></div>
-            <div class="project-card-content font-retro">
-              <p class="project-file-name"><span class="project-prefix">&gt;</span><app-typing class="project-title-typing" [words]="[project.title]"></app-typing></p>
-              <p class="project-description">{{ project.description }}</p>
-              @if (project.note) {
-              <p class="project-note">{{ project.note }}</p>
-              }
-              <div class="project-tags">
-                @for (tag of project.tags; track tag) {
-                <span>{{ tag }}</span>
-                }
-              </div>
-              @if (project.githubUrl) {
-              <button class="project-link" (click)="goToExternal(project.githubUrl)">View Github</button>
+        <!-- Projects Grid Container -->
+        <div class="projects-grid-wrapper mx-12 mb-12 relative">
+          <!-- Grid Header -->
+          <div class="grid-header mb-8">
+            <div class="grid-stats font-retro text-[#008f00] text-sm mb-4">
+              @if (visibleProjects.length > 0) {
+                <span>Showing {{ visibleProjects.length }} of {{ projectIndexes.length }} project<span *ngIf="projectIndexes.length !== 1">s</span></span>
+              } @else {
+                <span>No projects match your search</span>
               }
             </div>
-          </article>
-        </div>
+          </div>
 
-        }
+          <!-- Empty State -->
+          @if (visibleProjects.length === 0) {
+            <div class="project-empty-grid font-retro">
+              <div class="empty-icon">⚠</div>
+              <p class="text-2xl mb-4">No projects found</p>
+              <p class="text-sm opacity-70">Try adjusting your filter: "{{ filterKeyword }}"</p>
+              <button class="empty-reset-btn font-retro mt-6" (click)="resetFilter()">
+                Reset Filter
+              </button>
+            </div>
+          } @else {
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+              @for (project of visibleProjects; track trackProject($index, project); let isFirst = $first) {
+                <article
+                  class="project-grid-card"
+                  [class.featured]="isFirst"
+                  role="article"
+                >
+                  <!-- Card Border/Frame -->
+                  <div class="card-frame">
+                    <!-- Image Container -->
+                    <div class="card-image-container">
+                      <div class="project-card-image" [ngClass]="project.imageClass"></div>
+                      <div class="project-card-overlay"></div>
+                    </div>
 
-        </div>
+                    <!-- Content Container -->
+                    <div class="card-content font-retro">
+                      <div class="content-header">
+                        <p class="project-file-name">
+                          <span class="project-prefix">&gt;</span>
+                          <app-typing class="project-title-typing" [words]="[project.title]"></app-typing>
+                        </p>
+                        @if (isFirst) {
+                          <span class="featured-badge">FEATURED</span>
+                        }
+                      </div>
 
-        </div>
+                      <p class="project-description">{{ project.description }}</p>
 
-        <div class="project-dots" *ngIf="projectIndexes.length > 0">
-          @for (index of projectIndexes; track index) {
-            <button
-              type="button"
-              class="project-dot"
-              [class.is-active]="currentProjectIndex === index"
-              [attr.aria-label]="'Go to project ' + (index + 1)"
-              [attr.title]="'Go to project ' + (index + 1)"
-              (click)="goToProject(index)"
-            >
-              <span class="project-dot-label">Project {{ index + 1 }}</span>
-            </button>
+                      @if (project.note) {
+                        <p class="project-note">{{ project.note }}</p>
+                      }
+
+                      <!-- Tags -->
+                      <div class="project-tags">
+                        @for (tag of project.tags; track tag) {
+                          <span class="tag">{{ tag }}</span>
+                        }
+                      </div>
+
+                      <!-- CTA -->
+                      @if (project.githubUrl) {
+                        <button class="project-link" (click)="goToExternal(project.githubUrl)" [attr.aria-label]="'View ' + project.title + ' on GitHub'">
+                          → View Github
+                        </button>
+                      }
+                    </div>
+                  </div>
+                </article>
+              }
+            </div>
           }
+
+          <!-- Grid Accent Lines -->
+          <div class="grid-accent-top"></div>
+          <div class="grid-accent-bottom"></div>
         </div>
 
     <footer class="footer justify-center bg-[#080808] flex flex-col gap-6 content-center items-center">

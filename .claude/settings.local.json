@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(impeccable:impeccable)",
+      "Bash(node .claude/skills/impeccable/scripts/load-context.mjs)",
+      "Bash(node \"C:\\\\Users\\\\Gaming pc\\\\.claude\\\\plugins\\\\cache\\\\impeccable\\\\impeccable\\\\3.0.5\\\\skills\\\\impeccable\\\\scripts\\\\load-context.mjs\")",
+      "Bash(curl -s http://localhost:4200)"
+    ]
+  }
+}

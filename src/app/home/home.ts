@@ -102,6 +102,9 @@ export class Home implements AfterViewInit, OnDestroy {
     () => this.interestTopics.find((topic) => topic.key === this.activeInterestTopic()) ?? this.interestTopics[0]
   );
 
+  private autoCycleTimer?: ReturnType<typeof setInterval>;
+  protected isAutoCycling = true;
+
   protected readonly skillTabs: SkillTab[] = [
     {
       key: 'frontend',
@@ -206,6 +209,7 @@ export class Home implements AfterViewInit, OnDestroy {
 
   protected setAboutTopic(topicKey: AboutTopicKey) {
     this.activeAboutTopic.set(topicKey);
+    this.pauseAutoCycle();
   }
 
   protected setInterestTopic(topicKey: InterestTopicKey) {
@@ -252,6 +256,8 @@ export class Home implements AfterViewInit, OnDestroy {
         this.setupSectionObserver();
       });
     });
+
+    this.startAutoCycle();
   }
 
   private setupSectionObserver() {
@@ -312,6 +318,7 @@ export class Home implements AfterViewInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       window.removeEventListener('load', this.onWindowLoad);
     }
+    this.stopAutoCycle();
   }
 
   goTo(path: string) {
@@ -322,5 +329,30 @@ export class Home implements AfterViewInit, OnDestroy {
   goToExternal(path: string) {
     console.log('navigating to', path);
     window.open(path, '_blank');
+  }
+
+  private startAutoCycle() {
+    this.stopAutoCycle();
+    this.autoCycleTimer = setInterval(() => {
+      if (this.isAutoCycling) {
+        const currentIndex = this.aboutTopics.findIndex(t => t.key === this.activeAboutTopic());
+        const nextIndex = (currentIndex + 1) % this.aboutTopics.length;
+        this.activeAboutTopic.set(this.aboutTopics[nextIndex].key);
+      }
+    }, 5000); // Cycle every 5 seconds
+  }
+
+  private pauseAutoCycle() {
+    this.isAutoCycling = false;
+    setTimeout(() => {
+      this.isAutoCycling = true;
+    }, 10000); // Resume after 10 seconds of inactivity
+  }
+
+  private stopAutoCycle() {
+    if (this.autoCycleTimer) {
+      clearInterval(this.autoCycleTimer);
+      this.autoCycleTimer = undefined;
+    }
   }
 }
