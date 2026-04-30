@@ -2,6 +2,8 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
 
+You can visit this website via this link: [Website](https://slimschade123.github.io/Portfolio-Website/)
+
 ## Development server
 
 To start a local development server, run:
