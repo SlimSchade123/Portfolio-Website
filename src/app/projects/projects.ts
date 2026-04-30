@@ -9,6 +9,7 @@ interface ProjectItem {
   description: string;
   tags: string[];
   imageClass: string;
+  imageUrl: string;
   githubUrl?: string;
   note?: string;
 }
@@ -36,6 +37,7 @@ export class Projects implements AfterViewInit, OnDestroy {
       description: 'Mechanon is a Deep Reinforcement Learning bot using RLGym-PPO for training. It has 19 reward functions and was trained to 4B timesteps.',
       tags: ['Python', 'Deep RL', 'RLGym-PPO'],
       imageClass: 'project-image-mechanon',
+      imageUrl: 'assets/images/Mechanon.png',
       note: 'Not Publicly Available',
     },
     {
@@ -44,6 +46,7 @@ export class Projects implements AfterViewInit, OnDestroy {
       description: 'Built for a hackathon, this chatbot uses an ASD-10 questionnaire classification model and reaches about 80% prediction accuracy.',
       tags: ['Python', 'ML', 'NLP'],
       imageClass: 'project-image-asd',
+      imageUrl: 'assets/images/asdclassification.png',
       githubUrl: 'https://github.com/SlimSchade123/HackathonSpring2025-ASDClassificationModel',
     },
     {
@@ -52,6 +55,7 @@ export class Projects implements AfterViewInit, OnDestroy {
       description: 'A Discord bot that can stand in as a Dungeon Master for Dungeons and Dragons, powered by GPT-based conversation flow.',
       tags: ['JavaScript', 'Prompt Engineering', 'LLM'],
       imageClass: 'project-image-dnd',
+      imageUrl: 'assets/images/DNDBot.png',
       githubUrl: 'https://github.com/SlimSchade123/DiscordDND',
     },
     {
@@ -60,6 +64,7 @@ export class Projects implements AfterViewInit, OnDestroy {
       description: 'A raytracing engine for realistic lighting simulation in 3D scenes, with a software rasterizer implementation for alternate rendering.',
       tags: ['C++', 'Computer Graphics', 'Software Development'],
       imageClass: 'project-image-raytracing',
+      imageUrl: 'assets/images/raytracing.png',
       githubUrl: 'https://github.com/SlimSchade123/GAT350-----Computer-Graphics',
     },
   ];

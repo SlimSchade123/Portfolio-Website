@@ -117,7 +117,11 @@
                   <div class="card-frame">
                     <!-- Image Container -->
                     <div class="card-image-container">
-                      <div class="project-card-image" [ngClass]="project.imageClass"></div>
+                      <div
+                        class="project-card-image"
+                        [ngClass]="project.imageClass"
+                        [style.background-image]="project.imageUrl ? 'url(' + project.imageUrl + ')' : null"
+                      ></div>
                       <div class="project-card-overlay"></div>
                     </div>
 

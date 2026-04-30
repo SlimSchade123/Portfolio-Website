@@ -109,69 +109,69 @@ export class Home implements AfterViewInit, OnDestroy {
     {
       key: 'frontend',
       label: '> Frontend',
-      heading: 'Frontend Placeholder Skills',
-      description: 'Temporary placeholders. Replace these with your real frontend strengths.',
+      heading: 'User Interface Skills',
+      description: 'I have been mastering frontend development since my early projects.',
       slides: [
         {
-          title: 'Placeholder UI Skill A',
-          summary: 'Temporary summary for this frontend skill. Replace with your own project impact.',
-          tags: ['placeholder', 'frontend', 'ui']
+          title: 'Web UI Development',
+          summary: 'With my strong foundation in web frameworks, I create responsive and dynamic user interfaces.',
+          tags: ['design', 'angular', 'html/css']
         },
         {
-          title: 'Placeholder UI Skill B',
-          summary: 'Temporary summary for this frontend skill. Mention your frameworks and wins here.',
-          tags: ['placeholder', 'components', 'ux']
+          title: 'Game UI and Interaction',
+          summary: 'Using Unity\'s UI system to create engaging and intuitive interfaces.',
+          tags: ['usability', 'components', 'ux']
         },
         {
-          title: 'Placeholder UI Skill C',
-          summary: 'Temporary summary for this frontend skill. Swap in your strongest examples.',
-          tags: ['placeholder', 'css', 'interaction']
+          title: 'Responsive Design',
+          summary: 'Using projects like this portfolio site to expermient with modern CSS techniques.',
+          tags: ['tailwind', 'css', 'interaction']
         }
       ]
     },
     {
       key: 'backend',
       label: '> Backend',
-      heading: 'Backend Placeholder Skills',
-      description: 'Temporary placeholders. Swap these out for your backend experience.',
+      heading: 'Backend Skills',
+      description: 'I have experience building scalable backend systems and APIs.',
       slides: [
         {
-          title: 'Placeholder API Skill A',
-          summary: 'Temporary summary for your backend APIs. Replace with real service ownership.',
-          tags: ['placeholder', 'api', 'backend']
+          title: 'API Development',
+          summary: 'Designing and implementing RESTful APIs with a focus on performance and maintainability.',
+          tags: ['node.js', 'express', 'fastapi']
         },
         {
-          title: 'Placeholder API Skill B',
-          summary: 'Temporary summary for backend architecture. Add your scaling or reliability work.',
-          tags: ['placeholder', 'architecture', 'services']
+          title: 'Database Design',
+          summary: 'Creating efficient database schemas and optimizing queries for better performance.',
+          tags: ['postgresql', 'mongodb', 'database']
         },
         {
-          title: 'Placeholder Data Skill C',
-          summary: 'Temporary summary for persistence and data modeling. Replace with true experience.',
-          tags: ['placeholder', 'data', 'sql']
+          title: 'Cloud Infrastructure',
+          summary: 'Deploying and managing applications on cloud platforms with a focus on reliability and scalability.',
+          tags: ['azure', 'docker']
         }
       ]
     },
     {
       key: 'tools',
-      label: '> Tools',
-      heading: 'Tooling Placeholder Skills',
-      description: 'Temporary placeholders. Update this list with your favorite tools and workflows.',
+      label: '> Game Development',
+      heading: 'Game Development Skills',
+      description: 'With my background in game development, I have experience with various tools and engines to bring interactive experiences to life.',
       slides: [
         {
-          title: 'Placeholder Tool A',
-          summary: 'Temporary summary for tool usage. Replace with real developer tooling strengths.',
-          tags: ['placeholder', 'tooling', 'workflow']
+          title: 'Unity Engine',
+          summary: 'Skilled in using Unity for game development, including C# scripting, physics, and animation systems.',
+          tags: ['Mechanics', 'Animation', 'Game Engine']
         },
         {
-          title: 'Placeholder Tool B',
-          summary: 'Temporary summary for automation. Mention your CI/CD and productivity wins.',
-          tags: ['placeholder', 'automation', 'devops']
+          title: 'Unreal Engine',
+          summary: 'I have experience with Unreal Engine, particularly in level design and Blueprint scripting for rapid prototyping.',
+          tags: ['UI/UX', 'Level Design', 'Prototyping']
         },
         {
-          title: 'Placeholder Workflow C',
-          summary: 'Temporary summary for team practices. Replace with your collaboration style.',
-          tags: ['placeholder', 'git', 'process']
+          title: 'Blender',
+          summary: 'I have experience with Blender for 3D modeling and animation.',
+          tags: ['Animation', 'Rigging', 'Modelling']
         }
       ]
     }

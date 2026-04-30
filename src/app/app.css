@@ -300,15 +300,11 @@
 
 .screen-warp {
   flex: 1;
-  overflow: hidden;
-}
-
-.screen-warp {
   position: relative;
   min-height: 100%;
   transform: none;
   filter: contrast(1.03);
-  overflow: auto;
+  overflow: visible;
 }
 
 .screen-inner {
